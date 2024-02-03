@@ -40,6 +40,20 @@ app.post('/contatos',(req, res)=>{
   res.status(201).json(contato)
 })
 
+app.put('/contatos/:id',(req, res)=>{
+    let contato = dados.filter(x => x.id == req.params.id)[0]
+    if (contato == undefined){
+        res.status(404).json({
+            message: "Contato não existe"
+        })
+    }
+
+    contato.nome = req.body.nome
+    contato.email = req.body.email
+    
+    res.status(200).json(contato)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
