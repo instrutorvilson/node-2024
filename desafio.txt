@@ -1,0 +1,2 @@
+Criar endpoints CRUD para 
+locais: id, nome, rua, bairro, cidade, fone
