@@ -5,6 +5,7 @@ const contatos = require('./contatos')
 const locais = require('./locais')
 
 app.use(express.json())
+
 app.use('/contatos', contatos)
 app.use('/locais', locais)
 

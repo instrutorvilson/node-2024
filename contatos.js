@@ -1,6 +1,3 @@
-const express = require('express')
-router = express.Router()
-
 const dados = [
     {
         id:1,
@@ -13,6 +10,9 @@ const dados = [
         email:'joao@gmail.com'
     }
 ]
+
+const express = require('express')
+router = express.Router()
 
 router.get('/', (req, res) => {
     res.send(dados)
