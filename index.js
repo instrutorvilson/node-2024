@@ -3,11 +3,13 @@ const app = express()
 const port = 3000
 const contatos = require('./contatos')
 const locais = require('./locais')
+const compromissos = require('./compromissos')
 
 app.use(express.json())
 
 app.use('/contatos', contatos)
 app.use('/locais', locais)
+app.use('/compromissos', compromissos)
 
 
 app.listen(port, () => {
