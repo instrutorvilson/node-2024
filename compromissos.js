@@ -44,8 +44,8 @@ router.post("/", (req, res) => {
         id: compromissos.length+1,
         descricao:req.body.descricao,
         data: req.body.data,
-        local: contatos.filter(x => x.id == req.body.local.id)[0],
-        contato: req.body.contato
+        local: req.body.local,
+        contato: contatos.filter(x => x.id == req.body.contato.id)[0],
     }
     compromissos.push(compromisso)
     res.status(201).json(compromisso)
