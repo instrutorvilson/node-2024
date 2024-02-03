@@ -1,16 +1,7 @@
 const express = require('express')
 router = express.Router()
 
-const locais = [
-    {
-        id: 1,
-        nome: "cancha de bocha",
-        rua: "Rua Carlos Honburg",
-        bairro: "Wunderwald",
-        cidade: "Pomerode",
-        fone: " (47) 98851-1764"
-    }
-]
+const locais = require('./database/db')[2]
 
 router.get('/', (req, res) => {
     res.send(locais)

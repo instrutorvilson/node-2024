@@ -1,18 +1,7 @@
-const dados = [
-    {
-        id:1,
-        nome:'maria',
-        email:'maria@gmail.com'
-    },
-    {
-        id:2,
-        nome:'joao',
-        email:'joao@gmail.com'
-    }
-]
 
 const express = require('express')
 router = express.Router()
+const dados = require('./database/db')[0]
 
 router.get('/', (req, res) => {
     res.send(dados)
