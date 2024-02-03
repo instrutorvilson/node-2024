@@ -50,8 +50,19 @@ app.put('/contatos/:id',(req, res)=>{
 
     contato.nome = req.body.nome
     contato.email = req.body.email
-    
+
     res.status(200).json(contato)
+})
+
+app.delete('/contatos/:id', (req, res) => {
+    let contato = dados.filter(x => x.id == req.params.id)[0]
+    if (contato == undefined){
+        res.status(404).json({
+            message: "Contato não existe"
+        })
+    }
+    dados.splice(contato.id-1,1)
+    res.sendStatus(204)
 })
 
 app.listen(port, () => {
