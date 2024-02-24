@@ -2,13 +2,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const produto = require('./produtos')
+const categoria = require('./categorias')
+
+app.use(express.json())
+app.use('/produtos', produto)
+app.use('/categorias', categoria)
 
 const bd = require('./bd')
 const { Produto, Categoria } = require('./modelos')
-
-
-app.use(express.json())
-
 app.get('/conexao', async (req, res) => {
     try {
         await bd.authenticate()
@@ -19,10 +21,10 @@ app.get('/conexao', async (req, res) => {
 })
 
 app.get('/criartabela', async (req, res) => {
-    try {     
+    try {   
 
-        Categoria.hasMany(Produto)
-        Produto.belongsTo(Categoria)
+        Categoria.hasMany(Produto , {foreignKey: 'categoryId'})
+        Produto.belongsTo(Categoria, {foreignKey: 'categoryId'})
 
         await bd.sync()
         res.send("tabela produto criada com sucesso")
