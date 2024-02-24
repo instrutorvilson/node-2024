@@ -11,6 +11,30 @@ app.use('/categorias', categoria)
 
 const bd = require('./bd')
 const { Produto, Categoria } = require('./modelos')
+const { Sequelize,DataTypes, Model } = require('sequelize')
+
+app.get('/criamodelos', async (req, res) => {
+    const sequelize = new Sequelize('bd_node', 'postgres', 'admin', {
+        host: 'localhost',
+        dialect: 'postgres'
+    })
+    try {
+        class User extends Model{}
+        User.init({
+            nome:{type: DataTypes.STRING, allowNull: false},
+            email:{type: DataTypes.STRING, allowNull: false},
+            fone:{type: DataTypes.STRING, allowNull: false},
+        },{ sequelize })
+        
+        await sequelize.sync()
+
+        res.send('Tabela de usuarios criada com sucesso')
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+
 app.get('/conexao', async (req, res) => {
     try {
         await bd.authenticate()

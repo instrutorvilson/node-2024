@@ -16,7 +16,10 @@ router.post('/', validaProduto, async(req, res) =>{
 
 router.get('/', async(req, res) =>{
     try{
-      const produtos = await Produto.findAll()
+      const produtos = await Produto.findAll({
+        attributes:['id','descricao','preco'],
+        where:{preco: '21.5', descricao:'Trigo glutten'}
+    })
       res.status(200).send(produtos)
     }
     catch(error){
