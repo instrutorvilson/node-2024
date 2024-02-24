@@ -1,0 +1,3 @@
+https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+
+https://expressjs.com/en/starter/hello-world.html
