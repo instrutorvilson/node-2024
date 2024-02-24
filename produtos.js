@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const validaProduto = require('./middlewares/validaProduto')
 
 const { Produto } = require('./modelos')
 
-router.post('/', async(req, res) =>{
+router.post('/', validaProduto, async(req, res) =>{
    try{
      const prod = await Produto.create(req.body)
      res.status(201).send(prod)
