@@ -33,4 +33,35 @@ router.get('/', async(req, res) =>{
     }
  })
 
+ router.put('/:idproduto', async(req, res) =>{
+    try{
+      let produto = await Produto.findByPk(req.params.idproduto)
+      if(produto != undefined){
+        await Produto.update(req.body, { where : { id : req.params.idproduto}})
+        res.status(200).send(req.body)
+      }
+      else
+      res.status(404).send("Produto não cadastrado")
+    }
+    catch(error){
+      res.status(400).send(error.message)
+    }
+ })
+
+ router.delete('/:idproduto', async(req, res) =>{
+    try{
+      let produto = await Produto.findByPk(req.params.idproduto)
+      if(produto != undefined){
+        await Produto.destroy({ where : { id : req.params.idproduto}})
+        res.status(204).send()
+      }
+      else
+      res.status(404).send("Produto não cadastrado")
+    }
+    catch(error){
+      res.status(400).send(error.message)
+    }
+ })
+
+
 module.exports = router
