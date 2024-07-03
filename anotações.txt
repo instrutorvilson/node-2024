@@ -1,0 +1,24 @@
+O que é Node?
+-> framework backend
+-> javascript
+
+Modulo http
+
+REST API ->
+REpresentation 
+S state
+T transfer
+
+JSON
+
+endpoint
+http//meusite.com/contatos
+
+verbos http
+GET -> consultando dados
+POST -> envio dados para a API
+
+http//meusite.com/contatos/1
+GET -> trazer um unico contato
+DELETE -> remove o contato informado
+PUT -> alterar um contato
