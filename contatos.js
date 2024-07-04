@@ -1,20 +1,30 @@
 const express = require('express')
 const router = express.Router()
+const pool = require('./config')
 
 var db = []
 
-router.get('/',(req, res)=>{
-    res.send(db)
+router.get('/', async(req, res)=>{
+   try{
+      let cliente = await pool.connect()
+      var dados = await cliente.query('select * from tb_contatos')
+      res.send(dados.rows)     
+    }catch(error){
+     res.send(error.message)
+    }   
  })
  
- router.post('/',(req, res) => {
-     let contato = {
-         id: db.length + 1,
-         nome: req.body.nome,
-         email: req.body.email
+ router.post('/', async(req, res) => {
+     try {
+         var cliente = await pool.connect()
+        var dados = 
+         await cliente.query(
+         'insert into tb_contatos(nome, email)values($1,$2) RETURNING *',
+         [req.body.nome, req.body.email])
+         res.status(201).send(dados.rows[0])
+     } catch (error) {
+       res.send(error.message)
      }
-     db.push(contato)
-     res.status(201).send(contato)
  })
 
  router.delete('/:id',(req, res) => {

@@ -22,3 +22,21 @@ http//meusite.com/contatos/1
 GET -> trazer um unico contato
 DELETE -> remove o contato informado
 PUT -> alterar um contato
+
+start = "npx nodemon index.js"
+npm run start
+
+https://github.com/instrutorvilson/node-2024.git
+
+criar endpoints de produto e testar no postman
+-> GET, POST, GET /, DELETE, PUT
+-> descricao, valorunitario, estoque
+
+
+create table tb_contatos(
+  id serial primary key,
+	nome varchar(20),
+	email varchar(20)
+)
+
+insert into tb_contatos(nome, email)values('maria','maria@gmail.com')
