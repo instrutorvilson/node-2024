@@ -25,6 +25,8 @@ PUT -> alterar um contato
 
 start = "npx nodemon index.js"
 npm run start
+configurar ambiente de desnvolvimento
+-> npm install dotenv
 
 https://github.com/instrutorvilson/node-2024.git
 
@@ -40,3 +42,22 @@ create table tb_contatos(
 )
 
 insert into tb_contatos(nome, email)values('maria','maria@gmail.com')
+
+create table tb_produtos(
+id serial primary key,
+descricao varchar(30),
+preco decimal(6,2),
+estoque int)
+
+instala criptografia de senha
+npm install bcrypt
+
+https://www.httpstatus.com.br/
+
+create table tb_usuarios(
+  id serial primary key,
+  nome varchar(20),
+  email varchar(50),
+  password varchar(200),
+  perfil varchar(20)
+)
