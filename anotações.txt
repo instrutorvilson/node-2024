@@ -61,3 +61,10 @@ create table tb_usuarios(
   password varchar(200),
   perfil varchar(20)
 )
+
+Gerar token
+npm install jsonwebtoken
+npm install validator
+
+x-code-access
+criar um usuario com perfil de Supervisor e permiter que a exclusao somente seja feito por usuario logado com esse perfil

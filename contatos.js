@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const pool = require('./config')
+const { validaContato } = require('./midlewares')
 
 router.get('/', async (req, res) => {
    try {
@@ -14,17 +15,18 @@ router.get('/', async (req, res) => {
    
 })
 
-router.post('/', async (req, res) => {
-   try {
-      let cliente = await pool.connect()
-      let dados =
-         await cliente.query(
-            'insert into tb_contatos(nome, email)values($1,$2) RETURNING *',
-            [req.body.nome, req.body.email])
+router.post('/', validaContato, async (req, res) => {
+   try {          
+         let cliente = await pool.connect()
+         let dados =
+            await cliente.query(
+               'insert into tb_contatos(nome, email)values($1,$2) RETURNING *',
+               [req.body.nome, req.body.email])
+         
+         cliente.end()
+   
+         res.status(201).send(dados.rows[0])      
       
-      cliente.end()
-
-      res.status(201).send(dados.rows[0])
    } catch (error) {
       res.send(error.message)
    }
@@ -59,7 +61,7 @@ router.get('/:id', async (req, res) => {
    }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', validaContato, async(req, res) => {
    try {
       let cliente = await pool.connect()
       let dados = await cliente.query('select * from tb_contatos where id = $1',[req.params.id])
