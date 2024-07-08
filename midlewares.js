@@ -29,7 +29,7 @@ const verificaToken = (req, res, next) => {
         let decoded = jwt.verify(token, process.env.SECRET_KEY)
         console.log(decoded.perfil)
         if(req.method == 'POST' & decoded.perfil != 'Operador' ){
-            res.status(400).send('Precisa ser operador para cadastrar.')
+            res.status(401).send('Precisa ser operador para cadastrar.')
             return
         }
         next()
