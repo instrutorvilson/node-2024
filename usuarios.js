@@ -3,9 +3,10 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const pool = require('./config')
+const { validaCadastro, validaDadosLoginUser } = require('./midlewares')
 
 
-router.post('/registrar', async (req, res) => {
+router.post('/registrar', validaCadastro, validaDadosLoginUser, async (req, res) => {
     try {
         let hashSenha = await bcrypt.hash(req.body.password, 10)
         let cliente = await pool.connect()

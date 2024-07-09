@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const pool = require('./config')
-const { validaContato } = require('./midlewares')
+const { validaCadastro } = require('./midlewares')
 
 router.get('/', async (req, res) => {
    try {
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
    
 })
 
-router.post('/', validaContato, async (req, res) => {
+router.post('/', validaCadastro, async (req, res) => {
    try {          
          let cliente = await pool.connect()
          let dados =
@@ -61,7 +61,7 @@ router.get('/:id', async (req, res) => {
    }
 })
 
-router.put('/:id', validaContato, async(req, res) => {
+router.put('/:id', validaCadastro, async(req, res) => {
    try {
       let cliente = await pool.connect()
       let dados = await cliente.query('select * from tb_contatos where id = $1',[req.params.id])
